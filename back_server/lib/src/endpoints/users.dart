@@ -3,12 +3,16 @@ import 'package:serverpod/serverpod.dart';
 
 class UsersEndpoint extends Endpoint {
   //
-  Future<bool> onCreate({
-    required String name,
-    required String urlFoto,
-    required String password,
-    required Session session,
-  }) async {
+  Future<String> hello(Session session, String name) async {
+    return 'Hello $name';
+  }
+
+  Future<bool> onCreate(
+    Session session,
+    String name,
+    String urlFoto,
+    String password,
+  ) async {
     try {
       final user = Users(
         name: name,
@@ -19,6 +23,17 @@ class UsersEndpoint extends Endpoint {
       return true;
     } catch (e) {
       return false;
+    }
+  }
+
+  Future<List<Users>> onCreateReadUsers(
+    Session session,
+  ) async {
+    try {
+      final users = await Users.db.find(session);
+      return users;
+    } catch (e) {
+      return [];
     }
   }
 }

@@ -10,7 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'protocol.dart' as _i3;
+import 'package:back_client/src/protocol/users.dart' as _i3;
+import 'protocol.dart' as _i4;
 
 /// {@category Endpoint}
 class EndpointExample extends _i1.EndpointRef {
@@ -32,6 +33,34 @@ class EndpointUsers extends _i1.EndpointRef {
 
   @override
   String get name => 'users';
+
+  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
+        'users',
+        'hello',
+        {'name': name},
+      );
+
+  _i2.Future<bool> onCreate(
+    String name,
+    String urlFoto,
+    String password,
+  ) =>
+      caller.callServerEndpoint<bool>(
+        'users',
+        'onCreate',
+        {
+          'name': name,
+          'urlFoto': urlFoto,
+          'password': password,
+        },
+      );
+
+  _i2.Future<List<_i3.Users>> onCreateReadUsers() =>
+      caller.callServerEndpoint<List<_i3.Users>>(
+        'users',
+        'onCreateReadUsers',
+        {},
+      );
 }
 
 class Client extends _i1.ServerpodClient {
@@ -43,7 +72,7 @@ class Client extends _i1.ServerpodClient {
     Duration? connectionTimeout,
   }) : super(
           host,
-          _i3.Protocol(),
+          _i4.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,

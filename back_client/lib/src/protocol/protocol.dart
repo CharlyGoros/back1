@@ -12,6 +12,7 @@ library protocol; // ignore_for_file: no_leading_underscores_for_library_prefixe
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'example.dart' as _i2;
 import 'users.dart' as _i3;
+import 'package:back_client/src/protocol/users.dart' as _i4;
 export 'example.dart';
 export 'users.dart';
 export 'client.dart';
@@ -45,6 +46,10 @@ class Protocol extends _i1.SerializationManager {
     }
     if (t == _i1.getType<_i3.Users?>()) {
       return (data != null ? _i3.Users.fromJson(data, this) : null) as T;
+    }
+    if (t == List<_i4.Users>) {
+      return (data as List).map((e) => deserialize<_i4.Users>(e)).toList()
+          as dynamic;
     }
     return super.deserialize<T>(data, t);
   }

@@ -56,7 +56,66 @@ class Endpoints extends _i1.EndpointDispatch {
     connectors['users'] = _i1.EndpointConnector(
       name: 'users',
       endpoint: endpoints['users']!,
-      methodConnectors: {},
+      methodConnectors: {
+        'hello': _i1.MethodConnector(
+          name: 'hello',
+          params: {
+            'name': _i1.ParameterDescription(
+              name: 'name',
+              type: _i1.getType<String>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['users'] as _i3.UsersEndpoint).hello(
+            session,
+            params['name'],
+          ),
+        ),
+        'onCreate': _i1.MethodConnector(
+          name: 'onCreate',
+          params: {
+            'name': _i1.ParameterDescription(
+              name: 'name',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'urlFoto': _i1.ParameterDescription(
+              name: 'urlFoto',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'password': _i1.ParameterDescription(
+              name: 'password',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['users'] as _i3.UsersEndpoint).onCreate(
+            session,
+            params['name'],
+            params['urlFoto'],
+            params['password'],
+          ),
+        ),
+        'onCreateReadUsers': _i1.MethodConnector(
+          name: 'onCreateReadUsers',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['users'] as _i3.UsersEndpoint)
+                  .onCreateReadUsers(session),
+        ),
+      },
     );
   }
 }

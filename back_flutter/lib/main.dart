@@ -63,6 +63,27 @@ class MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void _callHello2() async {
+    try {
+      await client.users.onCreate("Juan", "Juan", "Juan");
+    } catch (e) {
+      setState(() {
+        _errorMessage = '$e';
+      });
+    }
+  }
+
+  void _callHello3() async {
+    try {
+      final users = await client.users.onCreateReadUsers();
+      users.map((user) => print(user.name));
+    } catch (e) {
+      setState(() {
+        _errorMessage = '$e';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,12 +103,9 @@ class MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: ElevatedButton(
-                onPressed: _callHello,
-                child: const Text('Send to Server'),
-              ),
+            ElevatedButton(
+              onPressed: _callHello3,
+              child: const Text('Send to Server'),
             ),
             _ResultDisplay(
               resultMessage: _resultMessage,
