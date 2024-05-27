@@ -1,0 +1,7 @@
+class: Users
+table:  users
+fields:
+ name: String
+ urlFoto: String
+ descr: String 
+
