@@ -76,7 +76,7 @@ class MyHomePageState extends State<MyHomePage> {
   void _callHello3() async {
     try {
       final users = await client.users.onCreateReadUsers();
-      users.map((user) => print(user.name));
+      print(users);
     } catch (e) {
       setState(() {
         _errorMessage = '$e';
