@@ -82,4 +82,31 @@ class UsersEndpoint extends Endpoint {
       return false;
     }
   }
+
+Future<bool> deleteUser(
+    Session session,
+    int id,
+    
+  ) async {
+    try {
+      final user = await Users.db.findById(
+        session,
+        id,
+      );
+      if (user == null) {
+        return false;
+      }
+      
+      ;
+      await Users.db.deleteRow(session, user);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+}
+
+
+
+
 }
