@@ -72,6 +72,7 @@ class UsersEndpoint extends Endpoint {
         return false;
       }
       final usuarioAEditar = Users(
+        id: user.id,
         urlFoto: user.urlFoto,
         descr: user.descr,
         name: nombre,
@@ -83,10 +84,9 @@ class UsersEndpoint extends Endpoint {
     }
   }
 
-Future<bool> deleteUser(
+  Future<bool> deleteUser(
     Session session,
     int id,
-    
   ) async {
     try {
       final user = await Users.db.findById(
@@ -96,17 +96,11 @@ Future<bool> deleteUser(
       if (user == null) {
         return false;
       }
-      
-      ;
+
       await Users.db.deleteRow(session, user);
       return true;
     } catch (e) {
       return false;
     }
   }
-}
-
-
-
-
 }

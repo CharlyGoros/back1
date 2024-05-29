@@ -105,15 +105,74 @@ class Endpoints extends _i1.EndpointDispatch {
             params['password'],
           ),
         ),
-        'onCreateReadUsers': _i1.MethodConnector(
-          name: 'onCreateReadUsers',
+        'readUsers': _i1.MethodConnector(
+          name: 'readUsers',
           params: {},
           call: (
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['users'] as _i3.UsersEndpoint)
-                  .onCreateReadUsers(session),
+              (endpoints['users'] as _i3.UsersEndpoint).readUsers(session),
+        ),
+        'findUser': _i1.MethodConnector(
+          name: 'findUser',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['users'] as _i3.UsersEndpoint).findUser(
+            session,
+            params['id'],
+          ),
+        ),
+        'updateUser': _i1.MethodConnector(
+          name: 'updateUser',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            ),
+            'nombre': _i1.ParameterDescription(
+              name: 'nombre',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['users'] as _i3.UsersEndpoint).updateUser(
+            session,
+            params['id'],
+            params['nombre'],
+          ),
+        ),
+        'deleteUser': _i1.MethodConnector(
+          name: 'deleteUser',
+          params: {
+            'id': _i1.ParameterDescription(
+              name: 'id',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['users'] as _i3.UsersEndpoint).deleteUser(
+            session,
+            params['id'],
+          ),
         ),
       },
     );

@@ -55,11 +55,37 @@ class EndpointUsers extends _i1.EndpointRef {
         },
       );
 
-  _i2.Future<List<_i3.Users>> onCreateReadUsers() =>
+  _i2.Future<List<_i3.Users>> readUsers() =>
       caller.callServerEndpoint<List<_i3.Users>>(
         'users',
-        'onCreateReadUsers',
+        'readUsers',
         {},
+      );
+
+  _i2.Future<_i3.Users?> findUser(int id) =>
+      caller.callServerEndpoint<_i3.Users?>(
+        'users',
+        'findUser',
+        {'id': id},
+      );
+
+  _i2.Future<bool> updateUser(
+    int id,
+    String nombre,
+  ) =>
+      caller.callServerEndpoint<bool>(
+        'users',
+        'updateUser',
+        {
+          'id': id,
+          'nombre': nombre,
+        },
+      );
+
+  _i2.Future<bool> deleteUser(int id) => caller.callServerEndpoint<bool>(
+        'users',
+        'deleteUser',
+        {'id': id},
       );
 }
 

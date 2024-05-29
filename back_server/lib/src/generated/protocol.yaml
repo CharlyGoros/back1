@@ -3,4 +3,7 @@ example:
 users:
   - hello:
   - onCreate:
-  - onCreateReadUsers:
+  - readUsers:
+  - findUser:
+  - updateUser:
+  - deleteUser:
